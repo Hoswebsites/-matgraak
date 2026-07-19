@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JS Store — المتجر</title>
+<link rel="icon" href="logo.jpg">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="notice-bar" data-i18n="top_notice"></div>
+
+<nav class="navbar">
+  <div class="container">
+    <a href="index.html" class="brand">
+      <img src="logo.jpg" alt="JS Store">
+      
+    </a>
+    <div class="nav-links">
+      <a href="index.html" data-i18n="nav_home"></a>
+      <a href="shop.html" data-i18n="nav_shop"></a>
+      <a href="about.html" data-i18n="nav_about"></a>
+      <a href="contact.html" data-i18n="nav_contact"></a>
+    </div>
+    <div class="nav-tools">
+      <button class="tool-btn lang-btn" aria-label="language">EN</button>
+      <button class="tool-btn theme-toggle" aria-label="theme"><svg class="theme-icon" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" fill="none"></svg></button>
+      <a href="cart.html" class="tool-btn" aria-label="cart">
+        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" fill="none"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6 5 3H2"/><circle cx="9.5" cy="20" r="1.2"/><circle cx="17.5" cy="20" r="1.2"/></svg>
+        <span class="cart-count">0</span>
+      </a>
+      <button class="tool-btn burger" aria-label="menu">
+        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" fill="none"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- قائمة الموبايل الجانبية -->
+<div class="mobile-panel" id="mobile-menu-panel">
+  <div class="mobile-panel-head">
+    <div class="brand">
+      <img src="logo.jpg" alt="JS Store" style="width:70px; height:70px;">
+    </div>
+    <!-- زر إغلاق القائمة -->
+    <button class="tool-btn burger" aria-label="menu">
+      <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" fill="none" style="width:20px; height:20px;">
+        <path d="M18 6L6 18M6 6l12 12" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+  <!-- روابط الصفحات للموبايل -->
+  <a href="index.html" data-i18n="nav_home">الرئيسية</a>
+  <a href="shop.html" data-i18n="nav_shop">المتجر</a>
+  <a href="about.html" data-i18n="nav_about">من نحن</a>
+  <a href="contact.html" data-i18n="nav_contact">تواصل معنا</a>
+</div>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="eyebrow"><span class="sparkle">✦</span> <span data-i18n="shop_desc"></span></div>
+    <h1 data-i18n="shop_title"></h1>
+  </div>
+</div>
+
+<section class="section-tight">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html" data-i18n="breadcrumb_home"></a> / <span data-i18n="shop_title"></span>
+    </div>
+
+    <div class="shop-layout">
+      <!-- FILTERS -->
+      <aside class="filter-box">
+        <h4 data-i18n="filter_title"></h4>
+
+        <div class="filter-group">
+          <label style="font-weight:700; color:var(--text);" data-i18n="filter_cat"></label>
+          <label><input type="radio" name="cat" value="all" checked> <span data-i18n="filter_all"></span></label>
+          <label><input type="radio" name="cat" value="electronics"> <span data-i18n="cat_electronics"></span></label>
+          <label><input type="radio" name="cat" value="fashion"> <span data-i18n="cat_fashion"></span></label>
+          <label><input type="radio" name="cat" value="home"> <span data-i18n="cat_home"></span></label>
+          <label><input type="radio" name="cat" value="beauty"> <span data-i18n="cat_beauty"></span></label>
+        </div>
+
+        <div class="filter-group">
+          <label style="font-weight:700; color:var(--text);" data-i18n="filter_price"></label>
+          <input type="range" id="price-range" min="0" max="7000" step="100" value="7000">
+          <div class="range-row"><span>0 EGP</span><span id="price-range-val">7000 EGP</span></div>
+        </div>
+
+        <div class="filter-group">
+          <label style="font-weight:700; color:var(--text);" data-i18n="filter_rating"></label>
+          <label><input type="radio" name="rating" value="0" checked> <span data-i18n="filter_all"></span></label>
+          <label><input type="radio" name="rating" value="4.5"> ★ 4.5+</label>
+          <label><input type="radio" name="rating" value="4.0"> ★ 4.0+</label>
+        </div>
+
+        <button class="btn btn-outline btn-block" id="clear-filters" data-i18n="filter_clear"></button>
+      </aside>
+
+      <!-- RESULTS -->
+      <div data-rerender="products" id="shop-results">
+        <div class="toolbar">
+          <div class="search-box">
+            <svg viewBox="0 0 24 24" stroke-width="1.8" fill="none"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+            <input type="text" id="search-input" data-i18n-ph="search_ph">
+          </div>
+          <div style="display:flex; align-items:center; gap:14px;">
+            <span id="results-count" style="font-size:.85rem; color:var(--text-faint);"></span>
+            <select class="sort-select" id="sort-select">
+              <option value="pop" data-i18n="sort_pop"></option>
+              <option value="new" data-i18n="sort_new"></option>
+              <option value="low" data-i18n="sort_low"></option>
+              <option value="high" data-i18n="sort_high"></option>
+            </select>
+          </div>
+        </div>
+        <div class="product-grid" id="shop-grid"></div>
+        <div id="empty-msg" style="display:none; text-align:center; padding:60px 0; color:var(--text-faint);" data-i18n="empty_shop"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="brand" style="margin-bottom:16px;">
+          <img src="logo.jpg" alt="logo" style="width:100px;height:100px;">
+          
+        </div>
+        <p data-i18n="footer_about"></p>
+      </div>
+      <div class="foot-col">
+        <h4 data-i18n="footer_links"></h4>
+        <a href="index.html" data-i18n="nav_home"></a>
+        <a href="shop.html" data-i18n="nav_shop"></a>
+        <a href="about.html" data-i18n="nav_about"></a>
+        <a href="contact.html" data-i18n="nav_contact"></a>
+      </div>
+      <div class="foot-col">
+        <h4 data-i18n="footer_help"></h4>
+        <a href="#" data-i18n="help_shipping"></a>
+        <a href="#" data-i18n="help_returns"></a>
+        <a href="#" data-i18n="help_faq"></a>
+        <a href="#" data-i18n="help_track"></a>
+      </div>
+      <div class="foot-col">
+        <h4 data-i18n="footer_contact"></h4>
+        <a href="mailto:jacekasamih5@gmail.com">jacekasamih5@gmail.com</a>
+        <a href="tel:+201201428714">+20 1201428714</a>
+        <a href="contact.html" data-i18n="contact_address"></a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 <strong>JS Store</strong> — <span data-i18n="rights"></span></span>
+      <span data-i18n="made_by"></span>
+    </div>
+  </div>
+</footer>
+
+<script src="i18n.js"></script>
+<script src="data.js"></script>
+<script src="main.js"></script>
+<script>
+  const params = new URLSearchParams(location.search);
+  const initialCat = params.get('cat') || 'all';
+
+  function currentFilters(){
+    return {
+      cat: document.querySelector('input[name="cat"]:checked').value,
+      maxPrice: Number(document.getElementById('price-range').value),
+      minRating: Number(document.querySelector('input[name="rating"]:checked').value),
+      search: document.getElementById('search-input').value.trim().toLowerCase(),
+      sort: document.getElementById('sort-select').value
+    };
+  }
+
+  function renderShop(){
+    const f = currentFilters();
+    let list = PRODUCTS.filter(p=>{
+      if(f.cat!=='all' && p.cat!==f.cat) return false;
+      if(p.price > f.maxPrice) return false;
+      if(p.rating < f.minRating) return false;
+      if(f.search){
+        const name = (getProductName(p)).toLowerCase();
+        if(!name.includes(f.search)) return false;
+      }
+      return true;
+    });
+    if(f.sort==='low') list.sort((a,b)=>a.price-b.price);
+    else if(f.sort==='high') list.sort((a,b)=>b.price-a.price);
+    else if(f.sort==='new') list.sort((a,b)=>b.id-a.id);
+    else list.sort((a,b)=>b.rating-a.rating);
+
+    document.getElementById('shop-grid').innerHTML = list.map(renderProductCard).join('');
+    document.getElementById('empty-msg').style.display = list.length? 'none':'block';
+    document.getElementById('results-count').textContent = `${list.length} ${t('results_count')}`;
+  }
+  document.getElementById('shop-results').__rerender = renderShop;
+
+  if(initialCat!=='all'){
+    const radio = document.querySelector(`input[name="cat"][value="${initialCat}"]`);
+    if(radio) radio.checked = true;
+  }
+
+  document.querySelectorAll('input[name="cat"], input[name="rating"]').forEach(el=> el.addEventListener('change', renderShop));
+  document.getElementById('price-range').addEventListener('input', e=>{
+    document.getElementById('price-range-val').textContent = `${e.target.value} EGP`;
+    renderShop();
+  });
+  document.getElementById('search-input').addEventListener('input', renderShop);
+  document.getElementById('sort-select').addEventListener('change', renderShop);
+  document.getElementById('clear-filters').addEventListener('click', ()=>{
+    document.querySelector('input[name="cat"][value="all"]').checked = true;
+    document.querySelector('input[name="rating"][value="0"]').checked = true;
+    document.getElementById('price-range').value = 7000;
+    document.getElementById('price-range-val').textContent = '7000 EGP';
+    document.getElementById('search-input').value = '';
+    renderShop();
+  });
+
+  renderShop();
+  window.addEventListener('langchange', renderShop);
+</script>
+</body>
+</html>

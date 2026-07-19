@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home AI - عطور منزلية يدوية فاخرة</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+    
+    <nav class="navbar">
+        <div class="container">
+            <div class="brand">
+                <img src="logo.png" alt="Home AI Logo">
+                <div class="brand-name">Home <span>AI</span></div>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">الرئيسية</a>
+                <a href="#products">المنتجات</a>
+                <a href="policy.html">السياسات</a>
+            </div>
+            <div class="nav-tools">
+                <div id="user-nav-icon" onclick="toggleSidebar()" style="cursor: pointer; display: none;">
+                    <div class="user-circle-nav" id="user-initial-nav" style="width: 40px; height: 40px; background: var(--gradient); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 2px solid var(--secondary);"></div>
+                </div>
+                <a href="auth.html" id="login-link" class="tool-btn">تسجيل الدخول</a>
+                <div class="tool-btn" onclick="toggleSidebar()" style="cursor: pointer;">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cart-count-nav">0</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="user-info-group" id="sidebar-user-info" style="display: none; align-items: center; gap: 15px;">
+                <div class="user-circle" id="user-initial">A</div>
+                <div>
+                    <div id="sidebar-user-name" style="font-weight: bold; font-size: 1.1rem;">اسم المستخدم</div>
+                    <div id="sidebar-user-phone" style="font-size: 0.8rem; color: var(--text-dim);">01015186799</div>
+                </div>
+            </div>
+            <div id="sidebar-guest-info" style="font-weight: bold;">مرحباً بك</div>
+            <button onclick="toggleSidebar()" style="background: none; color: white; font-size: 1.5rem;">&times;</button>
+        </div>
+
+        <div class="sidebar-content">
+            <div class="sidebar-item" onclick="location.href='index.html'">
+                <i class="fas fa-home"></i>
+                <span>الرئيسية</span>
+            </div>
+            <div class="sidebar-item" id="cart-sidebar-trigger">
+                <div class="cart-sidebar-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count-badge" id="cart-count-sidebar">0</span>
+                </div>
+                <span>سلة المشتريات</span>
+            </div>
+            <div id="cart-items-container" style="margin-top: 15px; max-height: 300px; overflow-y: auto;">
+                <!-- منتجات السلة ستظهر هنا -->
+            </div>
+            <div id="cart-total-section" style="margin-top: 15px; padding: 15px; background: var(--surface); border-radius: 10px; display: none;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                    <span>الإجمالي:</span>
+                    <span id="cart-total-price">0 ج.م</span>
+                </div>
+                <button class="btn-primary" style="width: 100%; padding: 10px;" onclick="location.href='checkout.html'">إتمام الطلب</button>
+            </div>
+        </div>
+
+        <div class="sidebar-footer">
+            <button onclick="logout()" class="logout-btn" id="logout-btn" style="display: none;">
+                <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+            </button>
+            <button onclick="location.href='auth.html'" class="btn-primary" id="sidebar-login-btn" style="width: 100%;">تسجيل الدخول</button>
+        </div>
+    </aside>
+
+    <header class="hero">
+        <div class="container">
+            <h1>عطور منزلية ذكية مصنوعة يدوياً</h1>
+            <p>اكتشف مجموعتنا الحصرية من العطور المنزلية المستوحاة من الطبيعة والمصنوعة يدوياً لتناسب ذوقك الرفيع في Home AI.</p>
+            <a href="#products" class="btn-primary">تسوق الآن</a>
+        </div>
+    </header>
+
+    <section id="products" class="section container">
+        <h2 class="section-title">منتجاتنا المختارة</h2>
+        <div class="product-grid" id="product-container">
+            <!-- المنتجات سيتم تحميلها هنا عبر JS -->
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h4>Home AI</h4>
+                <p>متجركم المفضل للعطور المنزلية اليدوية الفاخرة في مصر.</p>
+            </div>
+            <div class="footer-section">
+                <h4>روابط سريعة</h4>
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="#products">المنتجات</a></li>
+                    <li><a href="policy.html">سياسة الخصوصية</a></li>
+                    <li><a href="policy.html">سياسة الاسترجاع</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>تواصل معنا</h4>
+                <p>القاهرة، مصر</p>
+                <p>هاتف: 01015186799</p>
+                <p>ايميل: afnan@afnanai.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>جميع الحقوق محفوظة &copy; 2026 Home AI</p>
+        </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script>
+        // نظام السلة
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function updateCartUI() {
+            const countNav = document.getElementById('cart-count-nav');
+            const countSidebar = document.getElementById('cart-count-sidebar');
+            const container = document.getElementById('cart-items-container');
+            const totalSection = document.getElementById('cart-total-section');
+            const totalPrice = document.getElementById('cart-total-price');
+
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            countNav.innerText = totalItems;
+            countSidebar.innerText = totalItems;
+
+            container.innerHTML = '';
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                total += item.price * item.quantity;
+                container.innerHTML += `
+                    <div style="display: flex; gap: 10px; margin-bottom: 10px; background: var(--surface); padding: 10px; border-radius: 8px; align-items: center;">
+                        <img src="${item.img}" style="width: 50px; height: 50px; border-radius: 5px; object-fit: cover;">
+                        <div style="flex-grow: 1;">
+                            <div style="font-size: 0.9rem; font-weight: bold;">${item.name}</div>
+                            <div style="font-size: 0.8rem; color: var(--secondary);">${item.price} ج.م &times; ${item.quantity}</div>
+                        </div>
+                        <button onclick="removeFromCart(${index})" style="background: none; color: #e74c3c;"><i class="fas fa-trash"></i></button>
+                    </div>
+                `;
+            });
+
+            if (cart.length > 0) {
+                totalSection.style.display = 'block';
+                totalPrice.innerText = total + ' ج.م';
+            } else {
+                totalSection.style.display = 'none';
+                container.innerHTML = '<p style="text-align: center; color: var(--text-dim);">السلة فارغة</p>';
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        function addToCart(productId) {
+            const product = PRODUCTS.find(p => p.id === productId);
+            const existing = cart.find(item => item.id === productId);
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name_ar,
+                    price: product.price,
+                    img: product.img,
+                    quantity: 1
+                });
+            }
+            updateCartUI();
+            // فتح الشريط الجانبي تلقائياً عند الإضافة
+            document.getElementById('sidebar').classList.add('active');
+            document.getElementById('overlay').classList.add('active');
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
+            document.getElementById('overlay').classList.toggle('active');
+        }
+
+        // التحقق من تسجيل الدخول
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (currentUser) {
+            document.getElementById('login-link').style.display = 'none';
+            document.getElementById('user-nav-icon').style.display = 'block';
+            document.getElementById('sidebar-user-info').style.display = 'flex';
+            document.getElementById('sidebar-guest-info').style.display = 'none';
+            document.getElementById('logout-btn').style.display = 'block';
+            document.getElementById('sidebar-login-btn').style.display = 'none';
+            
+            const initial = currentUser.fullName.charAt(0).toUpperCase();
+            document.getElementById('user-initial').innerText = initial;
+            document.getElementById('user-initial-nav').innerText = initial;
+            document.getElementById('sidebar-user-name').innerText = currentUser.fullName;
+            document.getElementById('sidebar-user-phone').innerText = currentUser.phone;
+        }
+
+        function logout() {
+            localStorage.removeItem('currentUser');
+            window.location.reload();
+        }
+
+        // عرض المنتجات
+        const container = document.getElementById('product-container');
+        PRODUCTS.forEach(p => {
+            const card = `
+                <div class="product-card">
+                    <img src="${p.img}" alt="${p.name_ar}" class="product-img">
+                    <div class="product-info">
+                        <div class="product-title">${p.name_ar}</div>
+                        <p>${p.desc_ar}</p>
+                        <div class="product-price">${p.price} ج.م</div>
+                        <button class="add-to-cart" onclick="addToCart(${p.id})">إضافة للسلة</button>
+                    </div>
+                </div>
+            `;
+            container.innerHTML += card;
+        });
+
+        // تهيئة السلة عند التحميل
+        updateCartUI();
+    </script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JS Store — تواصل معنا</title>
+<link rel="icon" href="logo.jpg">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="notice-bar" data-i18n="top_notice"></div>
+
+<nav class="navbar">
+  <div class="container">
+    <a href="index.html" class="brand">
+      <img src="logo.jpg" alt="JS Store">
+      
+    </a>
+    <div class="nav-links">
+      <a href="index.html" data-i18n="nav_home"></a>
+      <a href="shop.html" data-i18n="nav_shop"></a>
+      <a href="about.html" data-i18n="nav_about"></a>
+      <a href="contact.html" data-i18n="nav_contact"></a>
+    </div>
+    <div class="nav-tools">
+      <button class="tool-btn lang-btn" aria-label="language">EN</button>
+      <button class="tool-btn theme-toggle" aria-label="theme"><svg class="theme-icon" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" fill="none"></svg></button>
+      <a href="cart.html" class="tool-btn" aria-label="cart">
+        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" fill="none"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6 5 3H2"/><circle cx="9.5" cy="20" r="1.2"/><circle cx="17.5" cy="20" r="1.2"/></svg>
+        <span class="cart-count">0</span>
+      </a>
+      <button class="tool-btn burger" aria-label="menu">
+        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" fill="none"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- قائمة الموبايل الجانبية -->
+<div class="mobile-panel" id="mobile-menu-panel">
+  <div class="mobile-panel-head">
+    <div class="brand">
+      <img src="logo.jpg" alt="JS Store" style="width:70px; height:70px;">
+    </div>
+   <button class="tool-btn burger" aria-label="menu">
+      <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" fill="none" style="width:20px; height:20px;">
+        <path d="M18 6L6 18M6 6l12 12" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+  <!-- روابط الصفحات للموبايل -->
+  <a href="index.html" data-i18n="nav_home">الرئيسية</a>
+  <a href="shop.html" data-i18n="nav_shop">المتجر</a>
+  <a href="about.html" data-i18n="nav_about">من نحن</a>
+  <a href="contact.html" data-i18n="nav_contact">تواصل معنا</a>
+</div>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="eyebrow"><span class="sparkle">✦</span> <span data-i18n="contact_desc"></span></div>
+    <h1 data-i18n="contact_title"></h1>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html" data-i18n="breadcrumb_home"></a> / <span data-i18n="nav_contact"></span>
+    </div>
+
+    <div class="contact-grid">
+      <div>
+        <div class="contact-info-card">
+          <svg viewBox="0 0 24 24" stroke-width="1.6" fill="none"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.4 2.1L8 9.9a16 16 0 0 0 6 6l1.4-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.8 2Z"/></svg>
+          <div><strong data-i18n="info_phone"></strong><p style="margin:4px 0 0;">+20 100 000 0000</p></div>
+        </div>
+        <div class="contact-info-card">
+          <svg viewBox="0 0 24 24" stroke-width="1.6" fill="none"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 6 10 7 10-7"/></svg>
+          <div><strong data-i18n="info_email"></strong><p style="margin:4px 0 0;">info@jsstore.com</p></div>
+        </div>
+        <div class="contact-info-card">
+          <svg viewBox="0 0 24 24" stroke-width="1.6" fill="none"><path d="M12 21s7-5.8 7-11a7 7 0 1 0-14 0c0 5.2 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          <div><strong data-i18n="info_address"></strong><p style="margin:4px 0 0;" data-i18n="contact_address"></p></div>
+        </div>
+        <div class="contact-info-card">
+          <svg viewBox="0 0 24 24" stroke-width="1.6" fill="none"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          <div><strong data-i18n="info_hours"></strong><p style="margin:4px 0 0;" data-i18n="hours_val"></p></div>
+        </div>
+      </div>
+
+      <div>
+        <h3 data-i18n="contact_form_title" style="margin-bottom:20px;"></h3>
+        <form id="contact-form">
+          <div class="form-grid">
+            <div class="field">
+              <label data-i18n="label_name"></label>
+              <input type="text" required data-i18n-ph="ph_name">
+            </div>
+            <div class="field">
+              <label data-i18n="label_email"></label>
+              <input type="email" required data-i18n-ph="ph_email">
+            </div>
+          </div>
+          <div class="field">
+            <label data-i18n="label_subject"></label>
+            <input type="text" required data-i18n-ph="ph_subject">
+          </div>
+          <div class="field">
+            <label data-i18n="label_message"></label>
+            <textarea required data-i18n-ph="ph_message"></textarea>
+          </div>
+          <button type="submit" class="btn btn-gold btn-block" data-i18n="btn_send"></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="brand" style="margin-bottom:16px;">
+          <img src="logo.jpg" alt="logo" style="width:100px;height:100px;">
+          
+        </div>
+        <p data-i18n="footer_about"></p>
+      </div>
+      <div class="foot-col">
+        <h4 data-i18n="footer_links"></h4>
+        <a href="index.html" data-i18n="nav_home"></a>
+        <a href="shop.html" data-i18n="nav_shop"></a>
+        <a href="about.html" data-i18n="nav_about"></a>
+        <a href="contact.html" data-i18n="nav_contact"></a>
+      </div>
+      <div class="foot-col">
+        <h4 data-i18n="footer_help"></h4>
+        <a href="#" data-i18n="help_shipping"></a>
+        <a href="#" data-i18n="help_returns"></a>
+        <a href="#" data-i18n="help_faq"></a>
+        <a href="#" data-i18n="help_track"></a>
+      </div>
+      <div class="foot-col">
+        <h4 data-i18n="footer_contact"></h4>
+        <a href="mailto:jacekasamih5@gmail.com">jacekasamih5@gmail.com</a>
+        <a href="tel:+201201428714">+20 1201428714</a>
+        <a href="contact.html" data-i18n="contact_address"></a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 <strong>JS Store</strong> — <span data-i18n="rights"></span></span>
+      <span data-i18n="made_by"></span>
+    </div>
+  </div>
+</footer>
+
+<script src="i18n.js"></script>
+<script src="data.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JS Store — سلة التسوق</title>
+<link rel="icon" href="logo.jpg">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="notice-bar" data-i18n="top_notice"></div>
+
+<nav class="navbar">
+  <div class="container">
+    <a href="index.html" class="brand">
+      <img src="logo.jpg" alt="JS Store">
+      
+    </a>
+    <div class="nav-links">
+      <a href="index.html" data-i18n="nav_home"></a>
+      <a href="shop.html" data-i18n="nav_shop"></a>
+      <a href="about.html" data-i18n="nav_about"></a>
+      <a href="contact.html" data-i18n="nav_contact"></a>
+    </div>
+    <div class="nav-tools">
+      <button class="tool-btn lang-btn" aria-label="language">EN</button>
+      <button class="tool-btn theme-toggle" aria-label="theme"><svg class="theme-icon" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" fill="none"></svg></button>
+      <a href="cart.html" class="tool-btn" aria-label="cart">
+        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" fill="none"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6 5 3H2"/><circle cx="9.5" cy="20" r="1.2"/><circle cx="17.5" cy="20" r="1.2"/></svg>
+        <span class="cart-count">0</span>
+      </a>
+      <button class="tool-btn burger" aria-label="menu">
+        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" fill="none"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- قائمة الموبايل الجانبية -->
+<div class="mobile-panel" id="mobile-menu-panel">
+  <div class="mobile-panel-head">
+    <div class="brand">
+      <img src="logo.jpg" alt="JS Store" style="width:70px; height:70px;">
+    </div>
+    <!-- زر إغلاق القائمة -->
+    <button class="tool-btn burger" aria-label="menu">
+      <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" fill="none" style="width:20px; height:20px;">
+        <path d="M18 6L6 18M6 6l12 12" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+  <!-- روابط الصفحات للموبايل -->
+  <a href="index.html" data-i18n="nav_home">الرئيسية</a>
+  <a href="shop.html" data-i18n="nav_shop">المتجر</a>
+  <a href="about.html" data-i18n="nav_about">من نحن</a>
+  <a href="contact.html" data-i18n="nav_contact">تواصل معنا</a>
+</div>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="eyebrow"><span class="sparkle">✦</span> <span data-i18n="cart_desc"></span></div>
+    <h1 data-i18n="cart_title"></h1>
+  </div>
+</div>
+
+<section class="section-tight">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html" data-i18n="breadcrumb_home"></a> / <span data-i18n="cart_title"></span>
+    </div>
+
+    <div id="cart-filled">
+      <div class="cart-layout">
+        <div>
+          <table class="cart-table">
+            <thead>
+              <tr>
+                <th data-i18n="th_product"></th>
+                <th data-i18n="th_price"></th>
+                <th data-i18n="th_qty"></th>
+                <th data-i18n="th_total"></th>
+                <th data-i18n="th_action"></th>
+              </tr>
+            </thead>
+            <tbody id="cart-body"></tbody>
+          </table>
+          <a href="shop.html" class="btn btn-outline" style="margin-top:24px;" data-i18n="continue_shopping"></a>
+        </div>
+
+        <div class="summary-box">
+          <h3 data-i18n="order_summary" style="margin-bottom:18px;"></h3>
+          <div class="summary-row"><span data-i18n="sub_total"></span><span id="sum-sub">0 EGP</span></div>
+          <div class="summary-row"><span data-i18n="shipping"></span><span id="sum-ship" data-i18n="shipping_free"></span></div>
+          <div class="summary-row" id="discount-row" style="display:none;"><span data-i18n="discount"></span><span id="sum-discount">0 EGP</span></div>
+          <div class="summary-row total"><span data-i18n="grand_total"></span><span id="sum-total">0 EGP</span></div>
+          <div class="coupon-row">
+            <input type="text" id="coupon-input" data-i18n-ph="coupon_ph">
+            <button class="btn btn-outline btn-sm" id="coupon-btn" data-i18n="coupon_btn"></button>
+          </div>
+          <button class="btn btn-gold btn-block" id="checkout-btn" data-i18n="checkout_btn"></button>
+        </div>
+      </div>
+    </div>
+
+    <div id="cart-empty" class="empty-state" style="display:none;">
+      <svg viewBox="0 0 24 24" stroke-width="1.2" fill="none"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6 5 3H2"/><circle cx="9.5" cy="20" r="1.2"/><circle cx="17.5" cy="20" r="1.2"/></svg>
+      <h3 data-i18n="cart_empty_t"></h3>
+      <p data-i18n="cart_empty_d"></p>
+      <a href="shop.html" class="btn btn-gold" data-i18n="cart_empty_btn"></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="brand" style="margin-bottom:16px;">
+          <img src="logo.jpg" alt="logo" style="width:100px;height:100px;">
+          
+        </div>
+        <p data-i18n="footer_about"></p>
+      </div>
+      <div class="foot-col">
+        <h4 data-i18n="footer_links"></h4>
+        <a href="index.html" data-i18n="nav_home"></a>
+        <a href="shop.html" data-i18n="nav_shop"></a>
+        <a href="about.html" data-i18n="nav_about"></a>
+        <a href="contact.html" data-i18n="nav_contact"></a>
+      </div>
+      <div class="foot-col">
+        <h4 data-i18n="footer_help"></h4>
+        <a href="#" data-i18n="help_shipping"></a>
+        <a href="#" data-i18n="help_returns"></a>
+        <a href="#" data-i18n="help_faq"></a>
+        <a href="#" data-i18n="help_track"></a>
+      </div>
+      <div class="foot-col">
+        <h4 data-i18n="footer_contact"></h4>
+        <a href="mailto:jacekasamih5@gmail.com">jacekasamih5@gmail.com</a>
+        <a href="tel:+201201428714">+20 120 142 8714</a>
+        <a href="contact.html" data-i18n="contact_address"></a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 <strong>JS Store</strong> — <span data-i18n="rights"></span></span>
+      <span data-i18n="made_by"></span>
+    </div>
+  </div>
+</footer>
+
+<script src="i18n.js"></script>
+<script src="data.js"></script>
+<script src="main.js"></script>
+<script>
+  let discount = 0;
+
+  function renderCart(){
+    const cart = getCart();
+    const filledEl = document.getElementById('cart-filled');
+    const emptyEl = document.getElementById('cart-empty');
+    if(cart.length===0){
+      filledEl.style.display = 'none';
+      emptyEl.style.display = 'block';
+      return;
+    }
+    filledEl.style.display = 'block';
+    emptyEl.style.display = 'none';
+
+    let subtotal = 0;
+    const rows = cart.map(item=>{
+      const p = PRODUCTS.find(pp=>pp.id===item.id);
+      if(!p) return '';
+      const lineTotal = p.price * item.qty;
+      subtotal += lineTotal;
+      return `
+      <tr data-id="${p.id}">
+        <td>
+          <div class="cart-item-info">
+            <div class="cart-thumb" style="background:${thumbGradient(p.hue)}">${iconSvg(p.icon)}</div>
+            <div>
+              <a href="product.html?id=${p.id}"><strong>${getProductName(p)}</strong></a><br>
+              <button class="remove-btn" onclick="removeFromCart(${p.id}); renderCart();" data-i18n="th_action">${t('th_action')}</button>
+            </div>
+          </div>
+        </td>
+        <td>${p.price} EGP</td>
+        <td>
+          <div class="qty-box">
+            <button onclick="updateCartQty(${p.id}, ${item.qty-1}); renderCart();">−</button>
+            <span>${item.qty}</span>
+            <button onclick="updateCartQty(${p.id}, ${item.qty+1}); renderCart();">+</button>
+          </div>
+        </td>
+        <td><strong>${lineTotal} EGP</strong></td>
+        <td><button class="tool-btn" onclick="removeFromCart(${p.id}); renderCart();" aria-label="remove"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" fill="none"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg></button></td>
+      </tr>`;
+    }).join('');
+    document.getElementById('cart-body').innerHTML = rows;
+
+    const total = Math.max(0, subtotal - discount);
+    document.getElementById('sum-sub').textContent = `${subtotal} EGP`;
+    document.getElementById('sum-total').textContent = `${total} EGP`;
+    if(discount>0){
+      document.getElementById('discount-row').style.display = 'flex';
+      document.getElementById('sum-discount').textContent = `-${discount} EGP`;
+    } else {
+      document.getElementById('discount-row').style.display = 'none';
+    }
+  }
+
+  document.getElementById('coupon-btn').addEventListener('click', ()=>{
+    const code = document.getElementById('coupon-input').value.trim().toUpperCase();
+    const subtotal = getCart().reduce((s,i)=>{ const p = PRODUCTS.find(pp=>pp.id===i.id); return s + (p?p.price*i.qty:0); },0);
+    if(code === 'JS10'){
+      discount = Math.round(subtotal * 0.10);
+      showToast(t('toast_coupon_ok'));
+    } else {
+      discount = 0;
+      showToast(t('toast_coupon_bad'));
+    }
+    renderCart();
+  });
+
+  document.getElementById('checkout-btn').addEventListener('click', ()=>{
+    if(getCart().length===0) return;
+    showToast(getLang()==='ar' ? 'سيتم إضافة صفحة الدفع قريبًا' : 'Checkout page coming soon');
+  });
+
+  renderCart();
+  window.addEventListener('langchange', renderCart);
+</script>
+</body>
+</html>

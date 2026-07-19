@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول - Home AI</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { background: #f0f2f5; display: flex; align-items: center; justify-content: center; min-height: 100vh; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .auth-card { background: #fff; padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 100%; max-width: 400px; }
+        .auth-header { text-align: center; margin-bottom: 30px; }
+        .auth-header img { width: 80px; margin-bottom: 10px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #333; }
+        .form-group input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px; box-sizing: border-box; }
+        .auth-btn { width: 100%; padding: 12px; background: #6c5ce7; color: #fff; border: none; border-radius: 8px; font-size: 18px; cursor: pointer; transition: 0.3s; }
+        .auth-btn:hover { background: #5a4bcf; }
+        .toggle-auth { text-align: center; margin-top: 20px; color: #666; }
+        .toggle-auth a { color: #6c5ce7; text-decoration: none; font-weight: bold; }
+        .error-msg { color: #e74c3c; font-size: 14px; margin-top: 5px; display: none; }
+    </style>
+</head>
+<body>
+    <div class="auth-card">
+        <div class="auth-header">
+            <img src="logo.png" alt="Home AI Logo">
+            <h2 id="auth-title">تسجيل الدخول</h2>
+        </div>
+        
+        <form id="auth-form">
+            <div id="register-fields" style="display: none;">
+                <div class="form-group">
+                    <label>الاسم بالكامل</label>
+                    <input type="text" id="full-name" placeholder="أدخل اسمك">
+                </div>
+                <div class="form-group">
+                    <label>البريد الإلكتروني</label>
+                    <input type="email" id="email" placeholder="example@mail.com">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>رقم الهاتف المصري</label>
+                <input type="tel" id="phone" placeholder="01xxxxxxxxx" pattern="^01[0125][0-9]{8}$" required>
+                <div class="error-msg" id="phone-error">يرجى إدخال رقم هاتف مصري صحيح</div>
+            </div>
+            
+            <div class="form-group">
+                <label>كلمة المرور</label>
+                <input type="password" id="password" required>
+            </div>
+            
+            <button type="submit" class="auth-btn" id="submit-btn">دخول</button>
+        </form>
+        
+        <div class="toggle-auth">
+            <span id="toggle-text">ليس لديك حساب؟</span>
+            <a href="#" id="toggle-link">إنشاء حساب جديد</a>
+        </div>
+    </div>
+
+    <script>
+        let isLogin = true;
+        const form = document.getElementById('auth-form');
+        const toggleLink = document.getElementById('toggle-link');
+        const authTitle = document.getElementById('auth-title');
+        const registerFields = document.getElementById('register-fields');
+        const submitBtn = document.getElementById('submit-btn');
+        const toggleText = document.getElementById('toggle-text');
+
+        toggleLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            isLogin = !isLogin;
+            authTitle.innerText = isLogin ? 'تسجيل الدخول' : 'إنشاء حساب جديد';
+            submitBtn.innerText = isLogin ? 'دخول' : 'تسجيل';
+            toggleText.innerText = isLogin ? 'ليس لديك حساب؟' : 'لديك حساب بالفعل؟';
+            toggleLink.innerText = isLogin ? 'إنشاء حساب جديد' : 'تسجيل الدخول';
+            registerFields.style.display = isLogin ? 'none' : 'block';
+        });
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const phone = document.getElementById('phone').value;
+            const password = document.getElementById('password').value;
+            
+            // تحقق بسيط من رقم الهاتف المصري
+            if(!/^01[0125][0-9]{8}$/.test(phone)) {
+                document.getElementById('phone-error').style.display = 'block';
+                return;
+            }
+
+            if (isLogin) {
+                const user = JSON.parse(localStorage.getItem('user_' + phone));
+                if (user && user.password === password) {
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+                    window.location.href = 'index.html';
+                } else {
+                    alert('خطأ في رقم الهاتف أو كلمة المرور');
+                }
+            } else {
+                const fullName = document.getElementById('full-name').value;
+                const email = document.getElementById('email').value;
+                const newUser = { fullName, email, phone, password };
+                localStorage.setItem('user_' + phone, JSON.stringify(newUser));
+                alert('تم إنشاء الحساب بنجاح! يمكنك الآن تسجيل الدخول');
+                toggleLink.click();
+            }
+        });
+    </script>
+</body>
+</html>
